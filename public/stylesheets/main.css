@@ -1,5 +1,7 @@
 html {
   height: 100%;
+  background-color: #F5F7F2;
+
 }
 
 body {
@@ -28,7 +30,7 @@ p:nth-child(3) {
 }
 
 form {
-  position: fixed;
+  display: flex;
   z-index: 5;
   font-family: 'Assistant', sans-serif;;
   font-size: 14px;
@@ -85,9 +87,9 @@ form {
 }
 
 input {
-  position: fixed;
+  display: inline;
   z-index: 5;
-  width: 300px;
+  width: 150px;
   height: 29px;
   border: 1px solid lightblue;
   border-radius: 10px;
@@ -105,16 +107,15 @@ input:focus {
 }
 
 #reset {
-  margin-left: 320px;
-  height: 37px;
-  position: fixed;
+  display: flex;
   background-color: rgba(230, 230, 230, 0.5);
   border: none;
   border: 1px solid lightblue;
   font-size: 17px;
   font-weight: 300;
   border-radius: 10px;
-  padding: 3px;
+  padding: 5px 0;
+  text-align: center;
   width: 72px;
   color: #363636;
   font-family: "Assistant", sans-serif;
@@ -131,23 +132,20 @@ input:focus {
 }
 
 .social {
-  margin-left: 702px;
+
 }
 
 a {
   height: 24px;
-  position: fixed;
   background-color: rgba(230, 230, 230, 0.5);
   border: none;
   border: 1px solid lightblue;
   font-size: 17px;
   font-weight: 300;
   border-radius: 10px;
-  padding: 3px;
   width: 59px;
   color: #363636;
-  padding-left: 16px;
-  padding-top: 8px;
+  padding: 5px;
   text-decoration: none;
   font-family: 'Assistant', sans-serif;
 }
@@ -168,7 +166,7 @@ a:hover {
   font-size: 42px;
   padding: 0;
   margin: 0;
-  margin-top: -15px;
+  margin-top: -39px;
   color: #363636;
   font-weight: 200;
   background-color: rgba(245, 247, 242, 0.9);
@@ -176,28 +174,42 @@ a:hover {
 }
 
 .nav {
-  margin-left: 295px;
+  display: flex;
+  /* margin-left: 295px;
   margin-top: 5px;
   width: 581px;
   position: absolute;
   z-index: 1;
   height: 37px;
   background-color: rgba(245, 247, 242, 0.9);
-  box-shadow: 4px 2px 8px 12px rgba(245,247,242,0.9);
+  box-shadow: 4px 2px 8px 12px rgba(245,247,242,0.9); */
 }
 
 .tagline {
   font-family: "Assistant", sans-serif;
   position: absolute;
   font-size: 12px;
-  margin-top: 33px;
+  margin-top: 9px;
   font-weight: 400;
   color: #363636;
 }
 
+.top-master-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .header-wrapper {
   height: 70px;
+  width: 85%;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+
 }
 
 #article-link {

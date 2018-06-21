@@ -91,13 +91,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // interactivity
 
-            if (mouse.x - this.x < 70 && mouse.x - this.x > -70 && mouse.y  - this.y < 70 && mouse.y - this.y > -70) {
-              if (this.radius < maxRadius) {
-                this.radius += 1;
-              }
-            } else if (this.radius > minRadius) {
-              this.radius -= 1;
-            }
+            // if (mouse.x - this.x < 70 && mouse.x - this.x > -70 && mouse.y  - this.y < 70 && mouse.y - this.y > -70) {
+            //   if (this.radius < maxRadius) {
+            //     this.radius += 1;
+            //   }
+            // } else if (this.radius > minRadius) {
+            //   this.radius -= 1;
+            // }
             this.draw();
           }
 

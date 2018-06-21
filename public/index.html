@@ -10,20 +10,23 @@
   </head>
 
   <body class="mainbody">
+    <div class="top-master-wrapper">
+      <div class="header-wrapper">
+        <div class="title">
+          <div class="header">Plan My Night</div>
+          <div class="tagline">  A Yelp Visualizer by Nicholas Halloran</div>
+        </div>
+        <div class="nav">
+          <form id="searchform" method="POST" action="/yelp">
+            <input id="location" name="location" placeholder="Enter Location" type="text" >
+            <br/>
+            <input id="searchTerm" name="searchTerm" placeholder="Enter Search" type="text">
+            <input type="submit"value="submit">
+          </form>
 
-    <div class="header">
-        <div class="header">Plan My Night</div>
-        <div class="tagline">  A Yelp Visualizer by Nicholas Halloran</div>
-      <div class="nav">
-        <form id="searchform" method="POST" action="/yelp">
-          <input id="location" name="location" placeholder="Enter Location" type="text" >
-          <br/>
-          <input id="searchTerm" name="searchTerm" placeholder="Enter Search" type="text">
-          <input type="submit"value="submit">
-        </form>
-
-        <p id="retry"></p>
-        <button id="reset" type="button" name="button">Reset</button>
+          <p id="retry"></p>
+          <button id="reset" type="button" name="button">Reset</button>
+        </div>
         <div class="social">
           <a target="_blank" href="https://www.linkedin.com/in/nick-halloran-6a90702/" class="icon fa-linkedin alt">Linkedin</a>
           <a target="_blank" href="https://www.github.com/nmhalloran/" class="icon fa-github alt">Github</a>
