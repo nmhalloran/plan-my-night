@@ -9,21 +9,20 @@
     <script src="https://cdn.rawgit.com/jgallen23/jquery-builder/0.7.0/dist/1.11.1/jquery-css-deprecated-dimensions-effects-event-alias-offset-wrap.min.js"></script>
   </head>
 
-  <body>
+  <body class="mainbody">
 
     <div class="header">
-      <h1>Plan My Night</h1>
-      <h3>  A Yelp Visualizer by Nicholas Halloran</h3>
+        <div class="header">Plan My Night</div>
+        <div class="tagline">  A Yelp Visualizer by Nicholas Halloran</div>
       <div class="nav">
-        <form id="searchform">
-          <input id="location" placeholder="Enter Location" type="text" >
+        <form id="searchform" method="POST" action="/yelp">
+          <input id="location" name="location" placeholder="Enter Location" type="text" >
           <br/>
-          <input id="searchTerm" placeholder="Enter Search" type="text">
+          <input id="searchTerm" name="searchTerm" placeholder="Enter Search" type="text">
           <input type="submit"value="submit">
         </form>
 
         <p id="retry"></p>
-        <button type="button" id="demo" class="demo">Demo</button>
         <button id="reset" type="button" name="button">Reset</button>
         <div class="social">
           <a target="_blank" href="https://www.linkedin.com/in/nick-halloran-6a90702/" class="icon fa-linkedin alt">Linkedin</a>
@@ -35,48 +34,25 @@
     <div id="loading">
 
     </div>
+    <div class="mainwrapper">
+      <canvas id="network" className="canvas" width=100% height=100%></canvas>
+      <script type="application/javascript" src="./javascripts/canvas.js"></script>
 
+      <div id="article-prev">
+        <a target="_blank" id="article-link">
+          <span id="article-prev-title">How to Use Plan My Night</span>
+        </a>
+        <span id="parent-line"></span>
+        <div id="article-prev-text">
+          Enter your location and then make a standard Yelp search. Click on the circles representing the businesses returned in your search!
 
-    <div id="article-prev">
-      <a target="_blank" id="article-link" href="https://github.com/kayandrewj/Archaea/blob/master/README.md">
-        <span id="article-prev-title">How to Use Plan My Night</span>
-      </a>
-      <span id="parent-line"></span>
-      <div id="article-prev-text">
-        Enter your location and then make a standard Yelp search. Click on the circles representing the businesses returned in your search!<br></br>
+          NB: Enter in a new search to clear and reset the screen.
 
-        Please note: This search has a fairly narrow radius search (1 mile). The more precise you are with your search, the better your results will be!
+        </div>
       </div>
     </div>
 
-    <canvas id="network" className="canvas"></canvas>
-    <script type="application/javascript" src="./javascripts/canvas.js"></script>
-
-    <!-- <script>
-      (function() {
-        let canvas = document.getElementById("network");
-        ctx = canvas.getContext('2d');
-        watchWindow();
-
-        function render() {
-          canvas.width = window.innerWidth;
-          canvas.height = window.innerHeight;
-          ctx.clearRect(0, 0, canvas.width, canvas.height)
-        }
-
-        function watchWindow() {
-          window.addEventListener("resize", render, false);
-          render();
-        }
-      })();
-    </script> -->
-
-    <!-- <script type="application/javascript" src="vendor/keymaster.js"></script> -->
     <script type="application/javascript" src="./bundle.js"></script>
-
-  </body>
-</html>
-
 
   </body>
 </html>

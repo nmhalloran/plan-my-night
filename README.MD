@@ -1,7 +1,7 @@
 PlanMyNight - Data visualization
 
 Background and Overview
-PlanMyNight is a data visualization program that will give a brief visual representation of a users Yep search.
+PlanMyNight is a data visualization program that will give a brief visual representation of a users Yelp search.
 
 businesses are represented by circles. Their size and color are dependent upon how many reviews a business has and their star rating.
 
