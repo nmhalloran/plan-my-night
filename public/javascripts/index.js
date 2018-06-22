@@ -121,6 +121,12 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log('tick')
           });
 
+          svg.on("mousemove", function() {
+            var p1 = d3.svg.mouse(this);
+            root.px = p1[0];
+            root.py = p1[1];
+            force.resume();
+          });
 
           function dragstarted(d) {
             d3.event.sourceEvent.stopPropagation();

@@ -94,6 +94,7 @@ input {
   height: 29px;
   border: 1px solid lightblue;
   border-radius: 10px;
+  box-sizing: content-box;
   background-color: rgba(230,230,230,0.5);
   font-size: 17px;
   padding: 3px;
@@ -115,9 +116,7 @@ input:focus {
   font-size: 17px;
   font-weight: 300;
   border-radius: 10px;
-  padding: 5px 0;
-  text-align: center;
-  width: 72px;
+  padding: 5px 20px;
   color: #363636;
   font-family: "Assistant", sans-serif;
 
