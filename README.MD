@@ -5,12 +5,12 @@ PlanMyNight is a data visualization program that will give a brief visual repres
 
 businesses are represented by circles. Their size and color are dependent upon how many reviews a business has and their star rating.
 
-Users generate each screen by entering in their locationa and basic search parameters.
+Users generate each screen by entering in their location and basic search parameters.
 
-Additionally, users are able to define:
+<!-- Additionally, users are able to define: -->
 
-secondary search parameters to further streamline a search.
-Upon clicking on a business, other local business options will show up.
+<!-- secondary search parameters to further streamline a search.
+Upon clicking on a business, other local business options will show up. -->
 
 Functionality & MVP
 In PlanMyNight, users will be able to:
@@ -36,7 +36,7 @@ This project will be implemented with the following technologies:
 
 Vanilla JavaScript for overall structure.
 HTML5 Canvas with D3 for board rendering
-GraphQL for the YELP API requests.
+Express.js for the YELP API requests.
 Webpack to bundle and serve up the various scripts.
 
 api_util.js: this script will handle the the API calls and create data objects

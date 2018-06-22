@@ -25,9 +25,9 @@ console.log('request params', req.params);
     data = [];
     const firstResult = response.jsonBody.businesses;
     const prettyJson = JSON.stringify(firstResult, null, 4);
-    // console.log(response);
+    console.log(firstResult);
     response.jsonBody.businesses.forEach(business => {
-      let newbusiness = {"name": business.name, "url": business.url, "review_count": business.review_count, "rating": business.rating }
+      let newbusiness = {"name": business.name, "url": business.url, "review_count": business.review_count, "rating": business.rating, address: business.location }
       data.push(newbusiness);
     })
     // data = JSON.stringify(data);

@@ -2,6 +2,7 @@
 <html>
   <head>
     <link rel="stylesheet" href="./stylesheets/main.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Assistant:200,300,400" rel="stylesheet">
     <meta charset="utf-8">
     <title>Plan My Night</title>
@@ -14,6 +15,7 @@
     <div class="top-master-wrapper">
       <div class="header-wrapper">
         <div class="title">
+          <h1> </h1>
           <div class="header">Plan My Night</div>
           <div class="tagline">  A Yelp Visualizer by Nicholas Halloran</div>
         </div>
@@ -22,15 +24,14 @@
             <input id="location" name="location" placeholder="Enter Location" type="text" >
             <br/>
             <input id="searchTerm" name="searchTerm" placeholder="Enter Search" type="text">
-            <input type="submit"value="submit">
+            <input class="submit" type="submit"value="submit">
           </form>
 
           <p id="retry"></p>
-          <button id="reset" type="button" name="button">Reset</button>
         </div>
         <div class="social">
-          <a target="_blank" href="https://www.linkedin.com/in/nick-halloran-6a90702/" class="icon fa-linkedin alt">Linkedin</a>
-          <a target="_blank" href="https://www.github.com/nmhalloran/" class="icon fa-github alt">Github</a>
+          <a class="social-links" href="https://www.linkedin.com/in/nick-halloran-6a90702/"><i class="fab fa-linkedin-in"></i></a>
+          <a class="social-links" href="https://www.github.com/nmhalloran/"><i class="fab fa-github"></i></a>
         </div>
       </div>
     </div>
@@ -84,10 +85,9 @@
         <a target="_blank" id="article-link">
           <span id="article-prev-title">How to Use Plan My Night</span>
         </a>
-        <span id="parent-line"></span>
+        <!-- <span id="parent-line"></span> -->
         <div id="article-prev-text">
-          Enter your location and then make a standard Yelp search. Click on the circles representing the businesses returned in your search!
-
+          Enter your location and then make a standard Yelp search. Click on the circles representing the businesses returned in your search!<br><br>
           NB: Enter in a new search to clear and reset the screen.
 
         </div>
