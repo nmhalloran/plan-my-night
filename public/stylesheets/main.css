@@ -52,7 +52,6 @@ form {
   margin: 11px;
 }
 
-
 #article-prev-title {
   font-weight: 300;
   color: #363636;
@@ -77,6 +76,8 @@ form {
 #network {
   background-color: #F5F7F2;
   position: fixed;
+  width: 100%;
+  height: 100%;
   top: 0px;
   right: 0px;
   z-index: -1;

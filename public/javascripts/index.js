@@ -26,107 +26,140 @@ document.addEventListener('DOMContentLoaded', () => {
         result = response;
         /////////////////////////////////////////
         /////////////////////////////////////////
-        let canvas = document.getElementById('network');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        let ctx = canvas.getContext('2d');
-
-        var mouse = {
-          x: undefined,
-          y: undefined
-        }
-
-        let maxRadius = 60;
-        let minRadius = 10;
-
-        var colorArray = [
-          'rgba(255, 0, 0, 0.9)',
-          '#ffaa33',
-          '#00ff00',
-          '#4411aa',
-          '#ff1100'
-        ]
-        console.log(result, " in the canvas!")
-        window.addEventListener('mousemove',
-        function(event) {
-          mouse.x = event.x;
-          mouse.y = event.y;
-          // console.log(mouse);
-        })
-
-        window.addEventListener('resize',
-        function(){
-          canvas.width = window.innerWidth - 100;
-          canvas.height = window.innerHeight;
-        })
-
-        function Circle(x, y, dx, dy, radius, color) {
-          this.x = x;
-          this.y = y;
-          this.dx = dx;
-          this.dy = dy;
-          this.radius = radius;
-          this.minRadius = radius;
-          this.color = color;
-
-          this.draw = function() {
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
-            ctx.strokeStyle = 'blue';
-            ctx.fillStyle = this.color;
-            ctx.stroke();
-            ctx.fill();
-          }
-
-          this.update = function() {
-            if (this.x + this.radius > innerWidth - 100 || this.x - this.radius < 0) {
-              this.dx = -this.dx;
+          var width = window.innerWidth,
+              height = window.innerHeight;
+          let maxradius = 0;
+          d3.range(result.length).forEach(function(idx) {
+            if (result[idx].review_count > maxradius) {
+              maxradius = result[idx].review_count;
             }
-            if (this.y + this.radius > innerHeight || this.y - this.radius < 0) {
-              this.dy = -this.dy;
-            }
+          })
+          var scaledRadius = d3.scale.linear()
+            .domain([0, maxradius])
+            .range([25, 160]);
 
-            this.x += this.dx;
-            this.y += this.dy;
+          var drag = d3.behavior.drag()
+            .origin(function(d) { return d; })
+            .on("dragstart", dragstarted)
+            .on("drag", dragged)
+            .on("dragend", dragended);
 
-            // interactivity
+          var scaledColor = d3.scale.linear()
+            .domain([2.5, 3.5, 4.5])
+            .range(["red", "yellow", "green"])
+          var nodes = d3.range(result.length).map(function(idx) {
+            return {
+              radius: scaledRadius(result[idx].review_count),
+              color: scaledColor(result[idx].rating),
+              name: result[idx].name,
+              url: result[idx].url
+               };
+          }),
+              root = nodes[0],
+              color = d3.scale.category10();
 
-            // if (mouse.x - this.x < 70 && mouse.x - this.x > -70 && mouse.y  - this.y < 70 && mouse.y - this.y > -70) {
-            //   if (this.radius < maxRadius) {
-            //     this.radius += 1;
-            //   }
-            // } else if (this.radius > minRadius) {
-            //   this.radius -= 1;
-            // }
-            this.draw();
+          root.radius = scaledRadius(result[0].review_count);
+          root.fixed = true;
+
+          var force = d3.layout.force()
+              .gravity(0.06)
+              .charge(function(d, i) { return i ? 0 : -2000; })
+              .nodes(nodes)
+              .size([width, height]);
+
+          force.start();
+
+          d3.select("svg").remove();
+
+          var svg = d3.select("div.mainwrapper").append("svg")
+              .attr("width", width)
+              .attr("height", height)
+
+          var circles = svg.selectAll("circle")
+              .data(nodes.slice(1))
+
+          var g = circles.enter().append('g');
+          var a = g.append('a')
+              .attr("xlink:href", function(d) { return `${d.url}` ; });
+
+              a.append("circle")
+              .attr("r", function(d) { return d.radius; })
+              .attr("stroke", "black")
+              .style("fill", function(d, i) {
+                return d.color;
+              })
+              .call(drag);
+
+          var textElements = svg.append('g')
+              .selectAll('text')
+              .data(nodes.slice(1))
+              .enter().append("text")
+              .style("fill", "black")
+              .text(function(d){
+                return d.name
+              })
+              .attr("x", function(d) {return d.x;})
+              .attr("y", function(d) {return d.y;})
+              .call(drag);
+
+
+          force.on("tick", function(e) {
+            var q = d3.geom.quadtree(nodes),
+                i = 0,
+                n = nodes.length;
+
+            while (++i < n) q.visit(collide(nodes[i]));
+
+            svg.selectAll("circle")
+                .attr("cx", function(d) { return d.x; })
+                .attr("cy", function(d) { return d.y; })
+                .call(drag);
+            textElements
+              .attr('x', function(d) { return d.x; })
+              .attr('y', function(d) { return d.y; })
+              .call(drag);
+            console.log('tick')
+          });
+
+
+          function dragstarted(d) {
+            d3.event.sourceEvent.stopPropagation();
+            d3.select(this).classed("dragging", true);
           }
 
-        }
-        let circleArray = [];
-        function init() {
-          for (var i = 0; i < result.length; i++) {
-            let radius = result[i].review_count;
-            let color = colorArray[Math.floor(Math.random() * colorArray.length)]
-            let x = Math.random() * (innerWidth - radius * 2) + radius;
-            let y = Math.random() * (innerHeight - radius * 2) + radius;
-            let dy = (Math.random() - 0.5) * 3;
-            let dx = (Math.random() - 0.5) * 3;
-            circleArray.push(new Circle(x, y, dx, dy, radius, color));
+          function dragged(d) {
+            d3.select(this).attr("cx", d.x = d3.event.x).attr("cy", d.y = d3.event.y);
           }
-        }
 
-        init();
-
-        function animate() {
-          requestAnimationFrame(animate);
-          ctx.clearRect(0, 0, innerWidth, innerHeight);
-          for (var i = 0; i < circleArray.length; i++) {
-            circleArray[i].update();
+          function dragended(d) {
+            d3.select(this).classed("dragging", false);
           }
-        }
-        animate();
-        /////////////////////////////////////////
-        /////////////////////////////////////////
+
+
+          function collide(node) {
+            var r = node.radius + 16,
+                nx1 = node.x - r,
+                nx2 = node.x + r,
+                ny1 = node.y - r,
+                ny2 = node.y + r;
+            return function(quad, x1, y1, x2, y2) {
+              if (quad.point && (quad.point !== node)) {
+                var x = node.x - quad.point.x,
+                    y = node.y - quad.point.y,
+                    l = Math.sqrt(x * x + y * y),
+                    r = node.radius + quad.point.radius;
+                if (l < r) {
+                  l = (l - r) / l * .5;
+                  node.x -= x *= l;
+                  node.y -= y *= l;
+                  quad.point.x += x;
+                  quad.point.y += y;
+                }
+              }
+              return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
+            };
+          }
+
         return response;
       },
       error: function() {

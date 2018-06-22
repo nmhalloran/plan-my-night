@@ -5,7 +5,8 @@
     <link href="https://fonts.googleapis.com/css?family=Assistant:200,300,400" rel="stylesheet">
     <meta charset="utf-8">
     <title>Plan My Night</title>
-    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <!-- <script src="https://d3js.org/d3.v4.js"></script> -->
     <script src="https://cdn.rawgit.com/jgallen23/jquery-builder/0.7.0/dist/1.11.1/jquery-css-deprecated-dimensions-effects-event-alias-offset-wrap.min.js"></script>
   </head>
 
@@ -38,8 +39,46 @@
 
     </div>
     <div class="mainwrapper">
-      <canvas id="network" className="canvas" width=100% height=100%></canvas>
+      <canvas id="network" className="canvas"></canvas>
       <script type="application/javascript" src="./javascripts/canvas.js"></script>
+      <!-- <script>
+
+      let graph = {
+        nodes: [
+          {name: "John", age:36},
+          {name: "Mafe", age: 34},
+          {name: "Edwin", age: 39},
+          {name: "Santi", age: 8},
+          {name: "Nick", age: 3}
+        ]
+      }
+        var canvas = d3.select('#network'),
+          width = window.innerWidth,
+          height = window.innerHeight,
+          ctx = canvas.node().getContext("2d");
+        simulation = d3.forceSimulation()
+        .force("x", d3.forceX(width/2))
+        .on("tick", update);
+
+        // graph.nodes.forEach(function (d) {
+        //   d.x = Math.random() * width;
+        //   d.y = Math.random() * height;
+        //   debugger
+        // })
+
+        function update() {
+          ctx.clearRect(0, 0, width, height);
+          ctx.beginPath();
+          graph.nodes.forEach(drawNode);
+          ctx.fill()
+        }
+
+        function drawNode(d) {
+          ctx.moveTo(d.x, d.y);
+          ctx.arc(d.x, d.y, 3, 0, 2 * Math.PI);
+        }
+        update();
+      </script> -->
 
       <div id="article-prev">
         <a target="_blank" id="article-link">
