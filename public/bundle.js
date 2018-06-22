@@ -967,7 +967,7 @@ document.addEventListener('DOMContentLoaded', () => {
       success: function (response) {
         result = response;
         $("#article-prev-title").html("<span>How to Use Plan My Night</span>")
-        $("#article-prev-text").html("<div>Enter your location and then make a standard Yelp search. Click on the circles representing the businesses returned in your search! <br><br>NB: Enter in a new search to clear and reset the screen.</div>")
+        $("#article-prev-text").html("<div>Enter your location and then make a standard Yelp search. Click on the circles representing the businesses returned in your search. Bigger circles mean more reviews! <br><br>Plan my night also has an intuitive color coded rating system:<br>5 stars: dark green<br>4.5 stars: green<br>4 stars: purple<br>3.5 stars: yellow<br>3 stars: orange<br>2.5 stars and below: red...STAY AWAY!!<br>NB: Enter in a new search to clear and reset the screen.</div>")
         /////////////////////////////////////////
         /////////////////////////////////////////
           var width = window.innerWidth,
@@ -989,8 +989,8 @@ document.addEventListener('DOMContentLoaded', () => {
           //   .on("dragend", dragended);
 
           var scaledColor = d3.scale.linear()
-            .domain([2.5, 3.5, 4.5])
-            .range(["red", "yellow", "green"])
+            .domain([2.5, 3, 3.5, 4, 4.5])
+            .range(["red", "orange", "yellow", "purple", "green"])
           var nodes = d3.range(result.length).map(function(idx) {
             return {
               radius: scaledRadius(result[idx].review_count),

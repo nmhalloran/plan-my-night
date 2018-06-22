@@ -64,11 +64,11 @@ form {
 
 #article-prev-text {
   line-height: 22px;
-  font-size: 20px;
+  font-size: 15px;
   text-align: justify;
   padding-top: 1px;
-  height: 300px;
-  margin-top: 73px;
+  height: 330px;
+  margin-top: 15px;
   overflow: scroll;
   width: 200px;
 }
