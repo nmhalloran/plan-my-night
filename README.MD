@@ -14,8 +14,8 @@ The API call was custom formatted upon retrieval, so only the necessary data was
 
 # Screen Shots
 
-[Starting Screen]("./Initial Screen Shot.png")<br/>
-[Search Initial Screen]("./Search Screen Shot.png")<br/>
-[Individual Restaurant Screen]("./Final Screen Shot.png")
+[Starting Screen]("./docs/Initial Screen Shot.png")<br/>
+[Search Initial Screen]("./docs/Search Screen Shot.png")<br/>
+[Individual Restaurant Screen]("./docs/Final Screen Shot.png")
 
 Enjoy using Plan My Night. Any feedback can be sent directly to nmhalloran@gmail.com!
