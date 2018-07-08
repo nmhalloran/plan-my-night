@@ -13,9 +13,11 @@ The data was retrieved using Yelp's proprietary Yelp Fusion API module. This req
 The API call was custom formatted upon retrieval, so only the necessary data was sent up to the browser for manipulation and rendering.
 
 # Screen Shots
-
+Start Screen. Enter search parameters here.
 ![Starting Screen](./docs/Initial_Screen_Shot.png)<br/>
+After search, results are displayed in color-coded spheres.
 ![Search Initial Screen](./docs/Search_screenshot.png)<br/>
+Click on spheres to get more info on each business and link to Yelp site.
 ![Individual Restaurant Screen](./docs/Final_screenshot.png)
 
 Enjoy using Plan My Night. Any feedback can be sent directly to nmhalloran@gmail.com!
